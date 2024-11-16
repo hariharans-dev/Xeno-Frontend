@@ -1,0 +1,5 @@
+git add *
+git commit -am "page not found error"
+git push
+npm run build
+npm run deploy

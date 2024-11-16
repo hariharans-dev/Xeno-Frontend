@@ -1,0 +1,12 @@
+.google-login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+.google-login-container button:hover {
+  background-color: #357ae8;
+}

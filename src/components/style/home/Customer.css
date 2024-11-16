@@ -1,0 +1,136 @@
+/* Basic container styles */
+.dashboard-container {
+  padding: 2rem;
+  background-color: #f4f5f7;
+  min-height: 100vh; /* Full page height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.csv {
+  margin-top: 50px;
+}
+
+.download {
+  padding: 10px;
+  font-size: large;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.input {
+  padding: 10px;
+  width: 250px;
+}
+
+/* Header section styles */
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.field {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+input::placeholder {
+  text-align: center;
+}
+
+.dashboard-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.dashboard-subheading {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Dashboard content section */
+.dashboard-content {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Card styling */
+.dashboard-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 300px;
+  /* flex: 1; */
+  /* text-align: center; */
+}
+
+.card-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #f7543f;
+  margin-bottom: 1rem;
+}
+
+/* List styles */
+.website-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.website-item {
+  font-size: 1.1rem;
+  color: #333;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.website-item:last-child {
+  border-bottom: none;
+}
+
+/* Usage statistics styling */
+.dashboard-card p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.dashboard-card p strong {
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.instance-item {
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  font-size: x-large;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dashboard-content {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .dashboard-card {
+    width: 100%;
+    max-width: 400px;
+  }
+}

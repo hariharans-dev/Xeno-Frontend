@@ -1,0 +1,61 @@
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #f2f2f2; /* Light background */
+  color: #333; /* Dark text */
+  margin: 0;
+  justify-content: center; /* Center horizontally */
+  align-items: center;
+  height: 100vh;
+}
+
+.error-container {
+  text-align: center;
+  background-color: #fff; /* White background for the error box */
+  padding: 20px 20px; /* Spacing around the content */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 80%; /* Limit width for better presentation */
+  position: absolute; /* Positioning for centering */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Adjust for height and width of the container */
+}
+
+.error-code {
+  font-size: 6rem; /* Large font size for error code */
+  color: #ee6654; /* Primary theme color for error code */
+  margin-bottom: 1rem; /* Space below the error code */
+}
+
+.error-message {
+  font-size: 2rem; /* Medium font size for the message */
+  margin: 0.5rem 0; /* Space above and below */
+}
+
+.error-description {
+  margin-bottom: 2rem; /* Space below the description */
+  font-size: 1.1rem; /* Smaller font size for description */
+  color: #666; /* Darker gray for less emphasis */
+}
+
+.btn {
+  display: inline-block; /* Allows padding and background */
+  background-color: #ee6654; /* Primary button color */
+  color: #fff; /* White text color */
+  border: none; /* Remove default border */
+  border-radius: 30px; /* Rounded corners for button */
+  text-transform: uppercase; /* Uppercase text */
+  font-weight: 600; /* Bold text */
+  text-decoration: none; /* No underline */
+  text-align: center; /* Center the text horizontally */
+  padding: 10px 20px; /* Add padding for better spacing */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+  line-height: 1.5; /* Ensures proper vertical alignment */
+}
+
+.btn:hover {
+  background-color: #f14b35; /* Darker shade on hover */
+}

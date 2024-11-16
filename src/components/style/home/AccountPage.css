@@ -1,0 +1,267 @@
+/* Basic container styles */
+.dashboard-container {
+    padding: 2rem;
+    background-color: #f4f5f7;
+    min-height: 100vh; /* Full page height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  /* Header section styles */
+  .dashboard-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .dashboard-heading {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .dashboard-subheading {
+    font-size: 1.2rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  /* Dashboard content section */
+  .dashboard-content {
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  }
+  
+  /* Card styling */
+  .dashboard-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem; /* Increased padding for a spacious feel */
+    width: 350px; /* Increased width */
+    flex: 1;
+    text-align: center;
+    transition: transform 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .dashboard-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+  }
+  
+  .card-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #f7543f;
+    margin-bottom: 1rem;
+  }
+  
+  /* List styles */
+  .website-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .website-item {
+    font-size: 1.1rem;
+    color: #333;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .website-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* Usage statistics styling */
+  .dashboard-card p {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
+  .dashboard-card p strong {
+    font-size: 1.3rem;
+    color: #333;
+  }
+  
+  .instance-item {
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    font-size: x-large;
+    font-weight: 500;
+  }
+  
+  /* Form styling */
+  .form-container {
+    margin-top: 2rem; /* Space above form */
+  }
+  
+  label {
+    display: block; /* Labels on their own line */
+    font-weight: bold; /* Bold text for labels */
+    margin: 10px 0 5px; /* Spacing for labels */
+  }
+  
+  input[type="text"],
+  select {
+    width: 100%; /* Full width for inputs and select */
+    padding: 10px; /* Padding inside input fields */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Rounded corners for inputs */
+    box-sizing: border-box; /* Include padding and border in width */
+    margin-bottom: 15px; /* Space below input fields */
+  }
+  
+  input[type="text"]:focus,
+  select:focus {
+    border-color: #f7543f; /* Blue border on focus */
+    outline: none; /* Remove outline */
+  }
+  
+  .create-button {
+    background-color: #f7543f; /* Blue background for button */
+    color: white; /* White text color */
+    padding: 10px 15px; /* Padding for button */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size for button text */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .create-button:hover {
+    background-color: #a81d0b; /* Darker blue on hover */
+  }
+  
+  .create-button:disabled {
+    background-color: #cccccc; /* Gray background when disabled */
+    cursor: not-allowed; /* Not allowed cursor when disabled */
+  }
+  
+  /* Response message container */
+  .response-message {
+    margin-top: 20px; /* Space above the message */
+    padding: 15px; /* Padding inside the message box */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 1.2rem; /* Font size for the message */
+    text-align: center; /* Center the text */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+  
+  /* Success message style */
+  .response-message.success {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text color */
+    border: 1px solid #c3e6cb; /* Green border */
+  }
+  
+  /* Error message style */
+  .response-message.error {
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text color */
+    border: 1px solid #f5c6cb; /* Red border */
+  }
+  
+  /* Info message style */
+  .response-message.info {
+    background-color: #cce5ff; /* Light blue background */
+    color: #004085; /* Dark blue text color */
+    border: 1px solid #b8daff; /* Blue border */
+  }
+  
+  /* Manage Websites Panel styles */
+  /* Manage Websites Panel styles */
+  /* Manage Websites Panel styles */
+  .manage-websites-panel {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%; /* Increased width */
+    max-width: 600px; /* Limit maximum width */
+    margin: 1rem 0; /* Add some margin for spacing */
+    text-align: left; /* Align text to the left */
+  }
+  
+  /* Adjustments for the title */
+  .card-title {
+    font-size: 2rem; /* Slightly larger font size for better visibility */
+    font-weight: 600;
+    color: #f7543f; /* Consistent color with other cards */
+    margin-bottom: 1rem;
+  }
+  
+  /* List styles for instances */
+  .website-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .instance-item {
+    padding: 10px;
+    margin: 10px 0; /* Add vertical spacing between items */
+    border: 1px solid #ddd; /* Light border for better separation */
+    border-radius: 4px; /* Slightly rounded corners */
+    transition: background-color 0.3s; /* Smooth transition for hover */
+  }
+  
+  .instance-item:hover {
+    background-color: #f9f9f9; /* Light gray background on hover */
+  }
+  
+  /* Instance details styles */
+  .instance-details {
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .instance-details strong {
+    color: #f7543f; /* Color for strong text */
+  }
+  
+  button {
+    margin: 10px;
+  }
+  
+  .side-window {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 500px;
+    height: 50%;
+    background: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    padding: 20px;
+  }
+  
+  .side-window-content {
+    overflow-y: auto;
+  }
+  
+  .close-button {
+    background: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .dashboard-content {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  
+    .dashboard-card {
+      width: 100%;
+      max-width: 400px;
+    }
+  }
+  
