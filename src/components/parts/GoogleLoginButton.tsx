@@ -15,7 +15,7 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({
   const handleLoginSuccess = async (response: any) => {
     const credential = response.credential;
     var api = "";
-    if (className == "signin") {
+    if (className === "signin") {
       api = "http://xenobackend.hariharans.me/api/auth/googlelogin";
     } else {
       api = "http://xenobackend.hariharans.me/api/auth/googleregister";
@@ -28,7 +28,7 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({
       apiResponse.data.className = className;
       onGoogleAuthSuccess(apiResponse.data);
     } catch (error: any) {
-      if (error.response.status == 400) {
+      if (error.response.status === 400) {
         const data = {
           data: error.response.data,
           status: error.response.status,

@@ -28,6 +28,8 @@ const CustomerPage: React.FC = () => {
   const hasRun = useRef(false);
   const session = sessionStorage.getItem("session");
 
+  const [trigger, settrigger] = useState(0);
+
   const customer_function = async () => {
     try {
       const response = await SendRequest(
@@ -100,8 +102,10 @@ const CustomerPage: React.FC = () => {
             Authorization: session,
           }
         );
+        await refresh();
         console.log(response);
       } catch (error) {
+        settrigger((prev) => (prev === 1 ? 0 : 1));
         console.error("Error:", error);
       }
     } else {
@@ -125,9 +129,11 @@ const CustomerPage: React.FC = () => {
         );
         setresponse("file and customers added");
         console.log(response);
+        await refresh();
       } catch (error) {
         console.error("Error:", error);
         setresponse("error in the file");
+        settrigger((prev) => (prev === 1 ? 0 : 1));
       }
     } else {
       alert("No file selected");
@@ -167,6 +173,20 @@ const CustomerPage: React.FC = () => {
       alert("Please upload a valid CSV file");
     }
   };
+
+  const refresh = async () => {
+    if (!hasRun.current) {
+      setLoading(true);
+      Promise.all([customer_function(), customer_file_function()])
+        .then(() => setLoading(false))
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          setLoading(false);
+        });
+      hasRun.current = true;
+    }
+  };
+
   useEffect(() => {
     if (!hasRun.current) {
       setLoading(true);
@@ -178,7 +198,7 @@ const CustomerPage: React.FC = () => {
         });
       hasRun.current = true;
     }
-  }, []);
+  }, [trigger]);
 
   return (
     <div className="dashboard-container">

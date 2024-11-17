@@ -11,7 +11,7 @@ const apiurlsession = "http://xenobackend.hariharans.me/api/auth/session";
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const redirectToLogin = () => {
-    navigate("/auth");
+    navigate("/");
   };
 
   const validateSession = async () => {

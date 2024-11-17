@@ -30,6 +30,7 @@
 
 /* Dashboard content section */
 .dashboard-content {
+  margin-top: 30px;
   display: flex;
   justify-content: center; /* Center content horizontally */
   flex-wrap: wrap; /* Allow wrapping for smaller screens */
@@ -93,6 +94,12 @@
   margin: 20px;
   font-size: x-large;
   font-weight: 500;
+}
+
+ul {
+  list-style-type: none; /* Removes the bullet points */
+  padding: 0; /* Optional: Removes the left padding */
+  margin: 0; /* Optional: Adjusts the margin */
 }
 
 /* Form styling */

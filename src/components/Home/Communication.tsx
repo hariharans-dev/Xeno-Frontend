@@ -1,101 +1,82 @@
-import {
-  ChangeEvent,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 import { SendRequest } from "../functions/SendRequest";
-import "../style/home/AccountPage.css";
+import "../style/home/Campaign.css";
 
-const Communication: React.FC = () => {
-  const apiurl_user =
-    "https://vzo16sqfhl.execute-api.ap-south-1.amazonaws.com/stage1/user";
-  const apiurl_subscription =
-    "https://vzo16sqfhl.execute-api.ap-south-1.amazonaws.com/stage1/subscription";
+const SegmentCampaign: React.FC = () => {
+  const api_display_communication =
+    "http://xenobackend.hariharans.me/api/communication/display";
+  const api_display_campaign =
+    "http://xenobackend.hariharans.me/api/campaign/display";
 
-  const navigate = useNavigate();
+  const [name, setname] = useState("");
+  const [segment_id, setsegment_id] = useState("");
+  const [message, setmessage] = useState("");
+  const [startdate, setstartdate] = useState("");
+  const [enddate, setenddate] = useState("");
+
+  const [communications, setcommunication] = useState([]);
+  const [campaigns, setcampaign] = useState([]);
+
+  const [response, setresponse] = useState("");
+
+  const [triggerVariable, setTriggerVariable] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   const session = sessionStorage.getItem("session");
 
-  const [response, setresponse] = useState("");
-  const [responsetype, setresponsetype] = useState("");
-
-  const [subscriptions, setSubscriptions] = useState([]);
-
-  const [loading, setLoading] = useState(true); // Loading state
-
-  const [password, setpassword] = useState("");
-  const [repassword, setrepassword] = useState("");
-
-  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setpassword(e.target.value);
-    setresponse(""); // Clear response when typing
-  };
-
-  const handleRepasswordChange = (e: {
-    target: { value: SetStateAction<string> };
-  }) => {
-    setrepassword(e.target.value);
-    setresponse(""); // Clear response when typing
-  };
-
-  const subscriptiondata = async () => {
-    const senddata = { request: "search", session: session };
+  const get_communication_data = async () => {
     try {
-      const response = await SendRequest(apiurl_subscription, "POST", senddata);
-      const { statusCode, body } = response;
-      if (statusCode === 200 || statusCode === 201) {
-        setSubscriptions(body || []); // Set subscriptions to an empty array if body is undefined
-      }
+      const response = await SendRequest(
+        api_display_communication,
+        "GET",
+        undefined,
+        undefined,
+        {
+          Authorization: session,
+        }
+      );
+      console.log(response.data);
+      setcommunication(response.data);
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
-  const Update_password = async () => {
-    const senddata = {
-      request: "change_password",
-      session: session,
-      password: password,
-    };
+  const get_campaign_data = async () => {
     try {
-      const response = await SendRequest(apiurl_user, "POST", senddata);
-      const { statusCode, body } = response;
-
-      setresponse(body);
-
-      if (statusCode === 201) {
-        setresponse("Password Updated");
-        setresponsetype("success");
-        logout();
-      } else {
-        setresponse(body);
-        setresponsetype("error");
-      }
+      const response = await SendRequest(
+        api_display_campaign,
+        "GET",
+        undefined,
+        undefined,
+        {
+          Authorization: session,
+        }
+      );
+      console.log(response);
+      setcampaign(response.data);
     } catch (error) {
       console.error("Error:", error);
-      setresponse("Error in updating password");
-      setresponsetype("error");
     }
   };
 
-  const logout = () => {
-    sessionStorage.removeItem("session");
-    navigate("/?response=password changed");
+  const getCampaignNameById = (campaignId: any) => {
+    const campaign = campaigns.find(
+      (campaign) => campaign["id"] === campaignId
+    );
+    return campaign ? campaign["name"] : "Unknown Campaign";
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true); // Set loading to true before data fetch
+      setLoading(true);
       try {
-        await Promise.all([subscriptiondata()]);
+        await Promise.all([get_communication_data(), get_campaign_data()]);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-        setLoading(false); // Set loading to false after fetching
+        setLoading(false);
       }
     };
     fetchData();
@@ -104,100 +85,57 @@ const Communication: React.FC = () => {
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
-        <h1 className="dashboard-heading">Account</h1>
+        <h1 className="dashboard-heading">Communications</h1>
         <p className="dashboard-subheading">
-          Manage your hosting account and settings here.
+          Logs of your Customer Communications are here.
         </p>
       </div>
 
-      {loading ? ( // Show loading state
+      {loading ? (
         <p>Loading...</p>
       ) : (
         <div className="dashboard-content">
           <div className="dashboard-card">
-            <div className="sign-in-form">
-              <h1 className="title">Password Update</h1>
-              <h2></h2>
-              <p className="description">
-                Please enter the email address associated with your account, and
-                we'll send you a link to create a new password.
-              </p>
-              <div className="input-field">
-                <i className="fas fa-envelope"></i>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  name="password" // This is already correct
-                  onChange={(e) => handlePasswordChange(e)}
-                />
-              </div>
-              <div className="input-field">
-                <i className="fas fa-envelope"></i>
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  name="password" // Change "Email" to "email"
-                  onChange={(e) => handleRepasswordChange(e)}
-                />
-              </div>
-              <div className="button-box">
-                <button className="btn" onClick={() => Update_password()}>
-                  Update
-                </button>
-              </div>
-
-              {response && (
-                <div className={`response-message ${responsetype}`}>
-                  {response}
-                </div>
-              )}
-
-              {!response && password !== repassword && password !== "" && (
-                <div className="response-message error">
-                  Passwords donot match
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="dashboard-card">
-            <h2 className="card-title">Subscriptions History</h2>
             <ul className="website-list">
-              {subscriptions.length > 0 ? (
+              {communications.length > 0 ? (
                 (() => {
-                  if (subscriptions.length > 0) {
-                    return (
-                      <ul className="website-list">
-                        {subscriptions.map((subscription, index) => (
-                          <li key={index} className="instance-item">
-                            <div className="instance-details">
-                              <p className="instance-name">
-                                <strong>Status: </strong>
-                                {subscription["status"]}
-                              </p>
-                              <p className="instance-domain">
-                                <strong>Start date: </strong>
-                                {new Date(
-                                  subscription["from_time"]
-                                ).toLocaleString()}
-                              </p>
-                              <p className="instance-timestamp">
-                                <strong>End date: </strong>
-                                {new Date(
-                                  subscription["to_time"]
-                                ).toLocaleString()}
-                              </p>
-                            </div>
-                          </li>
-                        ))}
-                      </ul>
-                    );
-                  } else {
-                    // If there are no running subscriptions
-                    return <p>No subscriptions available.</p>;
-                  }
+                  return (
+                    <ul className="website-list">
+                      {communications.map((communication, index) => (
+                        <li key={index} className="instance-item">
+                          <div className="instance-details">
+                            <p className="instance-name">
+                              <strong>Name: </strong>
+                              {communication["email"]}
+                            </p>
+                            <p className="instance-timestamp">
+                              <strong>Campaign Name: </strong>
+                              {getCampaignNameById(
+                                communication["campaign_id"]
+                              )}
+                            </p>
+                            <p className="instance-timestamp">
+                              <strong>Delivery Status: </strong>
+                              {communication["delivery_status"]}
+                            </p>
+                            <p className="instance-timestamp">
+                              <strong>Message: </strong>
+                              {communication["message"]}
+                            </p>
+                            <p className="instance-timestamp">
+                              <strong>Delivery date: </strong>
+                              {new Date(
+                                communication["delivery_date"]
+                              ).toString()}
+                            </p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  );
                 })()
               ) : (
-                <p>No subscriptions available.</p> // Message if no subscriptions
+                <p>No subscriptions available.</p>
               )}
             </ul>
           </div>
@@ -207,4 +145,7 @@ const Communication: React.FC = () => {
   );
 };
 
-export default Communication;
+export default SegmentCampaign;
+function Ref(arg0: string) {
+  throw new Error("Function not implemented.");
+}
