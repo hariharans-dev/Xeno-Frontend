@@ -6,9 +6,11 @@ import Navbar from "./Home/Navbar";
 import "./style/Home.css"; // Import your CSS file
 import { SendRequest } from "./functions/SendRequest";
 
-const apiurlsession = "http://xenobackend.hariharans.me/api/auth/session";
+import { useDomain } from "../DomainProvider";
 
 const HomePage: React.FC = () => {
+  const domain = useDomain();
+  const apiurlsession = domain + "/api/auth/session";
   const navigate = useNavigate();
   const redirectToLogin = () => {
     navigate("/");

@@ -5,11 +5,13 @@ import "./style/SignupSignin.css";
 import { SendRequest } from "./functions/SendRequest";
 import GoogleLoginButton from "./parts/GoogleLoginButton";
 
-const apiurllogin = "http://xenobackend.hariharans.me/api/auth/login";
-const apiurlregister = "http://xenobackend.hariharans.me/api/auth/register";
-const apiurlsession = "http://xenobackend.hariharans.me/api/auth/session";
+import { useDomain } from "../DomainProvider";
 
 const SignupSignin: React.FC = () => {
+  const domain = useDomain();
+  const apiurllogin = domain + "/api/auth/login/";
+  const apiurlregister = domain + "/api/auth/register";
+  const apiurlsession = domain + "/api/auth/session";
   const navigate = useNavigate();
 
   const [signUpData, setSignUpData] = useState({

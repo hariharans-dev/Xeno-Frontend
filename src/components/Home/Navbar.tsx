@@ -4,12 +4,14 @@ import "../style/home/Navbar.css"; // Add some styling for the navbar
 import { useNavigate } from "react-router-dom";
 import { SendRequest } from "../functions/SendRequest";
 
+import { useDomain } from "../../DomainProvider";
+
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
+  const domain = useDomain();
   const session = sessionStorage.getItem("session");
 
-  const api_removealldata =
-    "http://xenobackend.hariharans.me/api/auth/removedatabase";
+  const api_removealldata = domain + "/api/auth/removedatabase";
 
   const onlogout = () => {
     sessionStorage.removeItem("session");

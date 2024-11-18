@@ -3,6 +3,8 @@ import { GoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import "./GoogleLoginButton.css";
 
+import { useDomain } from "../../DomainProvider";
+
 interface GoogleLoginButtonProps {
   className?: string;
   onGoogleAuthSuccess: (response: any) => void;
@@ -12,13 +14,15 @@ const GoogleLoginButton: React.FC<GoogleLoginButtonProps> = ({
   className,
   onGoogleAuthSuccess,
 }) => {
+  const domain = useDomain();
   const handleLoginSuccess = async (response: any) => {
     const credential = response.credential;
+
     var api = "";
     if (className === "signin") {
-      api = "http://xenobackend.hariharans.me/api/auth/googlelogin";
+      api = domain + "/api/auth/googlelogin";
     } else {
-      api = "http://xenobackend.hariharans.me/api/auth/googleregister";
+      api = domain + "/api/auth/googleregister";
     }
     try {
       const apiResponse = await axios.post(api, {

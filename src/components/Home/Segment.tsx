@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 import { SendRequest } from "../functions/SendRequest";
-import "../style/home/Segment.css"; // Import the CSS file for HostingPage
+import "../style/home/Segment.css";
+import { useDomain } from "../../DomainProvider";
 
 type Condition = {
   id: number;
@@ -11,12 +12,10 @@ type Condition = {
 };
 
 const Segment: React.FC = () => {
-  const api_display_segment =
-    "http://xenobackend.hariharans.me/api/segment/display";
-  const api_display_campaign =
-    "http://xenobackend.hariharans.me/api/campaign/display";
-  const api_register_segment = "http://xenobackend.hariharans.me/api/segment/register";
-
+  const domain = useDomain();
+  const api_display_segment = domain + "/api/segment/display";
+  const api_display_campaign = domain + "/api/campaign/display";
+  const api_register_segment = domain + "/api/segment/register";
 
   const [segments, setsegment] = useState([]);
   const [campaigns, setcampaign] = useState([]);

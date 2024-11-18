@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { SendRequest } from "../functions/SendRequest";
 import "../style/home/Campaign.css";
 
+import { useDomain } from "../../DomainProvider";
+
 const SegmentCampaign: React.FC = () => {
-  const api_display_segment =
-    "http://xenobackend.hariharans.me/api/segment/display";
-  const api_display_campaign =
-    "http://xenobackend.hariharans.me/api/campaign/display";
-  const api_register_campaign =
-    "http://xenobackend.hariharans.me/api/campaign/register";
+  const domain = useDomain();
+  const api_display_segment = domain + "/api/segment/display";
+  const api_display_campaign = domain + "/api/campaign/display";
+  const api_register_campaign = domain + "/api/campaign/register";
 
   const [name, setname] = useState("");
   const [segment_id, setsegment_id] = useState("");
@@ -211,7 +211,7 @@ const SegmentCampaign: React.FC = () => {
                 className="create-button"
                 onClick={handlecreatecampaign}
               >
-                Create Segment
+                Create Campaign
               </button>
             </form>
           </div>

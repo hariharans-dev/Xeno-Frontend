@@ -1,4 +1,3 @@
-// axiosService.ts
 import axios, { Method } from "axios";
 
 export const SendRequest = async (

@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 import { SendRequest } from "../functions/SendRequest";
 import "../style/home/Campaign.css";
 
+import { useDomain } from "../../DomainProvider";
+
 const SegmentCampaign: React.FC = () => {
-  const api_display_communication =
-    "http://xenobackend.hariharans.me/api/communication/display";
-  const api_display_campaign =
-    "http://xenobackend.hariharans.me/api/campaign/display";
+  const domain = useDomain();
+  const api_display_communication = domain + "/api/communication/display";
+  const api_display_campaign = domain + "/api/campaign/display";
 
   const [name, setname] = useState("");
   const [segment_id, setsegment_id] = useState("");

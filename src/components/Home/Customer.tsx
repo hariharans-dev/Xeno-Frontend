@@ -3,13 +3,14 @@ import "../style/home/Customer.css";
 import { SendRequest } from "../functions/SendRequest";
 import axios from "axios";
 
+import { useDomain } from "../../DomainProvider";
+
 const CustomerPage: React.FC = () => {
-  const api_display = "http://xenobackend.hariharans.me/api/customer/display";
-  const api_display_file =
-    "http://xenobackend.hariharans.me/api/customer/displayfile";
-  const api_register = "http://xenobackend.hariharans.me/api/customer/register";
-  const api_register_file =
-    "http://xenobackend.hariharans.me/api/customer/registerfile";
+  const domain = useDomain();
+  const api_display = domain + "/api/customer/display";
+  const api_display_file = domain + "/api/customer/displayfile";
+  const api_register = domain + "/api/customer/register";
+  const api_register_file = domain + "/api/customer/registerfile";
 
   const [customers, setcustomer] = useState([]);
   const [fileUrl, setFileUrl] = useState<string | null>(null);
