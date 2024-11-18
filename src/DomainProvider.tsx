@@ -9,7 +9,7 @@ const DomainContext = createContext<string>("");
 export const useDomain = (): string => useContext(DomainContext);
 
 export const DomainProvider: React.FC<DomainProviderProps> = ({ children }) => {
-  const domain = "http://localhost:3000";
+  const domain = "http://xenobackend.hariharans.me";
 
   return (
     <DomainContext.Provider value={domain}>{children}</DomainContext.Provider>
